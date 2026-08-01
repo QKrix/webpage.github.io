@@ -1,0 +1,2262 @@
+/* ==========================================================
+   FOR BACCHAA — SCRAPBOOK V3
+   style.css — PART 1
+   Global • Variables • Background • Intro • Book Layout
+========================================================== */
+
+/* ==========================
+   RESET
+========================== */
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+font-family:"Poppins",sans-serif;
+
+background:linear-gradient(135deg,#fff7fb,#ffeaf4,#fff2f7);
+
+overflow:hidden;
+
+height:100vh;
+
+color:#5c4a52;
+
+position:relative;
+
+}
+
+
+/* ==========================
+   VARIABLES
+========================== */
+
+:root{
+
+--pink:#ff9fc4;
+--darkPink:#ff6ca9;
+--cream:#fffaf8;
+--paper:#fffdfb;
+--text:#5d4a56;
+--shadow:0 20px 45px rgba(0,0,0,.12);
+
+}
+
+
+/* ==========================
+   FLOATING LAYERS
+========================== */
+
+.floating-layer{
+
+position:fixed;
+
+inset:0;
+
+overflow:hidden;
+
+pointer-events:none;
+
+z-index:1;
+
+}
+
+
+/* ==========================
+   INTRO SCREEN
+========================== */
+
+.intro-screen{
+
+position:fixed;
+
+inset:0;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:
+linear-gradient(
+135deg,
+#fff7fb,
+#ffe7f3,
+#fff8fc
+);
+
+z-index:9999;
+
+transition:.8s;
+
+}
+
+
+/* ==========================
+   INTRO CARD
+========================== */
+
+.intro-card{
+
+position:relative;
+
+width:500px;
+
+max-width:90%;
+
+padding:70px 50px;
+
+background:var(--paper);
+
+border-radius:30px;
+
+box-shadow:var(--shadow);
+
+text-align:center;
+
+overflow:hidden;
+
+border:2px solid rgba(255,170,205,.4);
+
+animation:floatCard 5s ease-in-out infinite;
+
+}
+
+
+/* ==========================
+   INTRO DECORATIONS
+========================== */
+
+.intro-bow{
+
+position:absolute;
+
+right:20px;
+
+top:18px;
+
+width:90px;
+
+}
+
+.intro-flower{
+
+position:absolute;
+
+left:-10px;
+
+bottom:-5px;
+
+width:170px;
+
+opacity:.95;
+
+}
+
+
+/* ==========================
+   INTRO TEXT
+========================== */
+
+.intro-card h3{
+
+font-family:"Patrick Hand",cursive;
+
+font-size:1.4rem;
+
+color:#c67da2;
+
+margin-bottom:15px;
+
+}
+
+.intro-card h1{
+
+font-family:"Caveat",cursive;
+
+font-size:4.2rem;
+
+color:var(--darkPink);
+
+margin-bottom:20px;
+
+}
+
+.intro-card p{
+
+font-size:1rem;
+
+line-height:1.8;
+
+margin-bottom:35px;
+
+color:#6c5b64;
+
+}
+
+
+/* ==========================
+   START BUTTON
+========================== */
+
+#start{
+
+padding:16px 42px;
+
+border:none;
+
+border-radius:50px;
+
+background:linear-gradient(
+135deg,
+#ff9fc4,
+#ff7eb3
+);
+
+color:white;
+
+font-size:1rem;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.35s;
+
+box-shadow:
+0 12px 25px rgba(255,120,170,.35);
+
+}
+
+#start:hover{
+
+transform:
+translateY(-4px)
+scale(1.05);
+
+box-shadow:
+0 18px 35px rgba(255,120,170,.45);
+
+}
+
+
+/* ==========================
+   BOOK CONTAINER
+========================== */
+
+.book-container{
+
+position:absolute;
+
+inset:0;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+perspective:2200px;
+
+z-index:5;
+
+}
+
+.hidden{
+
+display:none;
+
+}
+
+
+/* ==========================
+   BOOK
+========================== */
+
+.book{
+
+position:relative;
+
+width:1200px;
+
+height:760px;
+
+max-width:94vw;
+
+max-height:92vh;
+
+transform-style:preserve-3d;
+
+transition:
+transform .8s ease;
+
+animation:
+bookFloat 7s ease-in-out infinite;
+
+}
+
+
+/* ==========================
+   PAGES
+========================== */
+
+.pages{
+
+position:relative;
+
+width:100%;
+
+height:100%;
+
+}
+
+
+/* ==========================
+   INDIVIDUAL PAGE
+========================== */
+
+.page{
+
+position:absolute;
+
+inset:0;
+
+display:none;
+
+justify-content:center;
+
+align-items:center;
+
+padding:45px;
+
+animation:
+fadePage .7s ease;
+
+}
+
+.page.active{
+
+display:flex;
+
+}
+
+
+/* ==========================
+   PAGE PAPER
+========================== */
+
+.page-inner{
+
+position:relative;
+
+width:100%;
+
+height:100%;
+
+background:var(--paper);
+
+border-radius:26px;
+
+overflow:hidden;
+
+padding:55px;
+
+box-shadow:
+
+0 20px 50px rgba(0,0,0,.12),
+
+0 0 0 12px rgba(255,255,255,.45);
+
+}
+
+
+/* ==========================
+   PAPER GLOW
+========================== */
+
+.page-inner::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+radial-gradient(
+circle at top,
+rgba(255,255,255,.65),
+transparent 70%
+);
+
+pointer-events:none;
+
+}
+
+
+/* ==========================
+   PAGE SHADOW
+========================== */
+
+.page-inner::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+right:0;
+
+bottom:0;
+
+height:140px;
+
+background:
+
+linear-gradient(
+
+transparent,
+
+rgba(0,0,0,.04)
+
+);
+
+pointer-events:none;
+
+}
+/* ==========================================================
+   FOR BACCHAA — SCRAPBOOK V3
+   style.css — PART 2
+   Cover • Letter • Photos • Future • Navigation
+========================================================== */
+
+/* ==========================
+   PAGE HEADINGS
+========================== */
+
+.page h1{
+
+font-family:"Caveat",cursive;
+
+font-size:4rem;
+
+color:var(--darkPink);
+
+margin-bottom:15px;
+
+text-align:center;
+
+}
+
+.page h2{
+
+font-family:"Caveat",cursive;
+
+font-size:3.2rem;
+
+color:var(--darkPink);
+
+margin-bottom:15px;
+
+text-align:center;
+
+}
+
+.page h3{
+
+font-family:"Patrick Hand",cursive;
+
+font-size:1.5rem;
+
+font-weight:400;
+
+color:#a36f89;
+
+margin-bottom:18px;
+
+text-align:center;
+
+}
+
+.subtitle{
+
+text-align:center;
+
+margin-bottom:30px;
+
+color:#88717c;
+
+font-size:1rem;
+
+}
+
+
+/* ==========================
+   COVER PAGE
+========================== */
+
+.cover{
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+}
+
+.cover p{
+
+font-size:1.15rem;
+
+line-height:2;
+
+max-width:600px;
+
+color:#6f5a64;
+
+}
+
+.cover h3{
+
+font-size:2rem;
+
+font-family:"Caveat",cursive;
+
+}
+
+
+/* ==========================
+   LETTER PAGE
+========================== */
+
+.letter-page{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+.letter-paper{
+
+width:min(720px,90%);
+
+min-height:480px;
+
+padding:60px;
+
+background:#fffdf9;
+
+border-radius:20px;
+
+box-shadow:
+
+0 18px 35px rgba(0,0,0,.12);
+
+position:relative;
+
+overflow-y:auto;
+
+z-index:2;
+
+}
+
+.letter-paper h2{
+
+margin-bottom:35px;
+
+}
+
+.letter-paper p{
+
+font-family:"Patrick Hand",cursive;
+
+font-size:1.45rem;
+
+line-height:2.2;
+
+white-space:pre-line;
+
+color:#604f58;
+
+}
+
+
+/* ==========================================================
+   LITTLE MEMORIES PAGE
+========================================================== */
+
+.photos{
+
+position:relative;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:flex-start;
+
+width:100%;
+
+height:100%;
+
+padding:35px 40px 110px;
+
+box-sizing:border-box;
+
+overflow:hidden;
+
+}
+
+.photos h2{
+
+font-size:3rem;
+
+margin-bottom:8px;
+
+text-align:center;
+
+}
+
+.photos .subtitle{
+
+font-size:1.1rem;
+
+color:#8a7481;
+
+margin-bottom:35px;
+
+text-align:center;
+
+}
+
+.polaroid-gallery{
+
+display:flex;
+
+justify-content:center;
+
+align-items:flex-start;
+
+gap:35px;
+
+flex-wrap:wrap;
+
+width:100%;
+
+margin-bottom:20px;
+
+z-index:5;
+
+}
+
+.polaroid{
+
+width:220px;
+
+background:#fff;
+
+padding:14px;
+
+border-radius:18px;
+
+box-shadow:0 15px 30px rgba(0,0,0,.12);
+
+transition:.35s;
+
+position:relative;
+
+}
+
+.polaroid:hover{
+
+transform:translateY(-10px) rotate(-2deg);
+
+}
+
+.photo-wrapper{
+
+width:100%;
+
+aspect-ratio:1/1;
+
+overflow:hidden;
+
+border-radius:12px;
+
+}
+
+.photo-wrapper img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+display:block;
+
+cursor:pointer;
+
+transition:.35s;
+
+}
+
+.photo-wrapper img:hover{
+
+transform:scale(1.08);
+
+}
+
+.polaroid p{
+
+margin-top:12px;
+
+text-align:center;
+
+font-family:"Caveat",cursive;
+
+font-size:1.8rem;
+
+color:#b46b8d;
+
+}
+
+.photo-tip{
+
+margin-top:8px;
+
+font-size:.95rem;
+
+color:#8a7481;
+
+text-align:center;
+
+}
+
+.page-buttons{
+
+position:absolute;
+
+left:40px;
+
+right:40px;
+
+bottom:30px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+z-index:9999;
+
+}
+
+.page-buttons button{
+
+padding:14px 28px;
+
+border:none;
+
+border-radius:999px;
+
+background:linear-gradient(135deg,#ff9fc4,#ff78ae);
+
+color:#fff;
+
+font-size:1rem;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:0 10px 20px rgba(255,120,170,.25);
+
+}
+
+.page-buttons button:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 15px 30px rgba(255,120,170,.35);
+
+}
+
+/* Decorations */
+
+.tape-photo{
+
+position:absolute;
+
+top:8px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:140px;
+
+pointer-events:none;
+
+}
+
+.butterfly-photo{
+
+position:absolute;
+
+right:35px;
+
+top:80px;
+
+width:70px;
+
+pointer-events:none;
+
+animation:floatButterfly 5s ease-in-out infinite;
+
+}
+
+.blossom-photo{
+
+position:absolute;
+
+left:20px;
+
+bottom:20px;
+
+width:120px;
+
+pointer-events:none;
+
+}
+
+@keyframes floatButterfly{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+}
+
+
+/* ==========================
+   FUTURE PAGE
+========================== */
+
+.future{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+.future-paper{
+
+max-width:700px;
+
+padding:50px;
+
+background:#fffdf9;
+
+border-radius:18px;
+
+box-shadow:
+
+0 15px 30px rgba(0,0,0,.12);
+
+position:relative;
+
+}
+
+.future-paper p{
+
+font-family:"Patrick Hand",cursive;
+
+font-size:1.8rem;
+
+line-height:2;
+
+text-align:center;
+
+color:#664f59;
+
+}
+
+.future-stars{
+
+margin-top:35px;
+
+display:flex;
+
+gap:30px;
+
+font-size:2rem;
+
+color:#ff8ab7;
+
+justify-content:center;
+
+}
+
+
+/* ==========================
+   NAVIGATION BUTTONS
+========================== */
+
+.nav-buttons{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+width:100%;
+
+margin-top:40px;
+
+}
+
+.prev,
+.next,
+#restart{
+
+padding:15px 34px;
+
+border:none;
+
+border-radius:50px;
+
+background:linear-gradient(
+135deg,
+#ff9fc4,
+#ff79ae
+);
+
+color:white;
+
+font-size:1rem;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:
+
+0 10px 22px rgba(255,120,170,.30);
+
+}
+
+.prev:hover,
+.next:hover,
+#restart:hover{
+
+transform:
+
+translateY(-4px)
+
+scale(1.05);
+
+box-shadow:
+
+0 16px 32px rgba(255,120,170,.40);
+
+}
+/* ==========================================================
+   FOR BACCHAA — SCRAPBOOK V3
+   style.css — PART 3
+   Hidden Hearts • Ending • Decorations • Lightbox
+========================================================== */
+
+/* ==========================
+   HIDDEN HEARTS
+========================== */
+
+.hidden-hearts{
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.heart-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,110px);
+
+gap:30px;
+
+margin:45px 0;
+
+}
+
+.heart-btn{
+
+width:95px;
+
+height:95px;
+
+border:none;
+
+border-radius:50%;
+
+background:linear-gradient(135deg,#ffb4d2,#ff7db2);
+
+color:white;
+
+font-size:2.2rem;
+
+cursor:pointer;
+
+transition:.35s;
+
+box-shadow:
+
+0 12px 25px rgba(255,130,180,.35);
+
+}
+
+.heart-btn:hover{
+
+transform:
+
+translateY(-8px)
+
+scale(1.12);
+
+}
+
+.heart-btn:active{
+
+transform:scale(.95);
+
+}
+
+
+/* ==========================
+   POPUP
+========================== */
+
+.popup{
+
+position:fixed;
+
+inset:0;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:rgba(255,240,248,.65);
+
+backdrop-filter:blur(10px);
+
+opacity:0;
+
+visibility:hidden;
+
+transition:.35s;
+
+z-index:99999;
+
+}
+
+.popup.show{
+
+opacity:1;
+
+visibility:visible;
+
+}
+
+.popup-card{
+
+width:420px;
+
+max-width:90%;
+
+padding:40px;
+
+background:white;
+
+border-radius:28px;
+
+text-align:center;
+
+box-shadow:
+
+0 22px 45px rgba(0,0,0,.18);
+
+animation:popupIn .35s ease;
+
+}
+
+.popup-card h2{
+
+margin-bottom:20px;
+
+}
+
+#note-text{
+
+font-family:"Patrick Hand",cursive;
+
+font-size:1.6rem;
+
+line-height:1.8;
+
+margin-bottom:25px;
+
+color:#6c5561;
+
+}
+
+#closePopup{
+
+padding:13px 28px;
+
+border:none;
+
+border-radius:40px;
+
+background:#ff7fb3;
+
+color:white;
+
+cursor:pointer;
+
+font-size:1rem;
+
+}
+
+
+/* ==========================
+   ENDING PAGE
+========================== */
+
+.ending{
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+}
+
+.ending-heart{
+
+font-size:5rem;
+
+color:#ff7eb4;
+
+animation:heartbeat 2s infinite;
+
+margin-bottom:10px;
+
+}
+
+.ending-text{
+
+font-family:"Patrick Hand",cursive;
+
+font-size:1.8rem;
+
+margin-top:15px;
+
+line-height:2;
+
+color:#6b5661;
+
+}
+
+.signature{
+
+position:absolute;
+
+right:45px;
+
+bottom:35px;
+
+font-family:"Caveat",cursive;
+
+font-size:2rem;
+
+color:#b86b8c;
+
+transform:rotate(-4deg);
+
+opacity:.9;
+
+}
+
+
+/* ==========================
+   DECORATIONS
+========================== */
+
+.deco{
+
+position:absolute;
+
+pointer-events:none;
+
+user-select:none;
+
+filter:drop-shadow(0 8px 18px rgba(0,0,0,.18));
+
+z-index:2;
+
+}
+
+.flower-cover{
+
+left:-25px;
+
+bottom:-5px;
+
+width:190px;
+
+}
+
+.bow-cover{
+
+right:20px;
+
+top:18px;
+
+width:90px;
+
+}
+
+.pin-cover{
+
+left:45px;
+
+top:25px;
+
+width:45px;
+
+}
+
+.blossom-cover{
+
+right:-10px;
+
+bottom:20px;
+
+width:130px;
+
+}
+
+.tape-letter{
+
+top:-5px;
+
+left:50%;
+
+transform:translateX(-50%) rotate(-3deg);
+
+width:140px;
+
+}
+
+.butterfly-letter{
+
+right:35px;
+
+top:90px;
+
+width:70px;
+
+animation:butterflyFloat 5s ease-in-out infinite;
+
+}
+
+.pin-letter{
+
+left:80px;
+
+top:60px;
+
+width:40px;
+
+}
+
+.blossom-letter{
+
+left:-10px;
+
+bottom:15px;
+
+width:120px;
+
+}
+
+.tape-photo{
+
+top:0;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:145px;
+
+}
+
+.butterfly-photo{
+
+right:25px;
+
+bottom:25px;
+
+width:70px;
+
+animation:butterflyFloat 5s ease-in-out infinite;
+
+}
+
+.blossom-photo{
+
+left:15px;
+
+bottom:15px;
+
+width:120px;
+
+}
+
+.flower-future{
+
+right:-15px;
+
+bottom:-5px;
+
+width:180px;
+
+}
+
+.tape-future{
+
+top:12px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:140px;
+
+}
+
+.bow-future{
+
+left:20px;
+
+top:20px;
+
+width:75px;
+
+}
+
+.butterfly-hidden{
+
+right:25px;
+
+top:60px;
+
+width:65px;
+
+animation:butterflyFloat 5s ease-in-out infinite;
+
+}
+
+.blossom-hidden{
+
+left:20px;
+
+bottom:20px;
+
+width:120px;
+
+}
+
+.tape-hidden{
+
+top:10px;
+
+right:100px;
+
+width:120px;
+
+}
+
+.flower-ending{
+
+left:-20px;
+
+bottom:-5px;
+
+width:185px;
+
+}
+
+.bow-ending{
+
+right:25px;
+
+top:20px;
+
+width:90px;
+
+}
+
+.blossom-ending{
+
+right:0;
+
+bottom:20px;
+
+width:120px;
+
+}
+
+
+/* ==========================
+   PHOTO LIGHTBOX
+========================== */
+
+.lightbox{
+
+position:fixed;
+
+inset:0;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:rgba(255,243,248,.75);
+
+backdrop-filter:blur(14px);
+
+opacity:0;
+
+visibility:hidden;
+
+transition:.35s;
+
+z-index:99999;
+
+}
+
+.lightbox.show{
+
+opacity:1;
+
+visibility:visible;
+
+}
+
+.lightbox-content{
+
+position:relative;
+
+animation:popupIn .35s ease;
+
+}
+
+.frame-container{
+
+position:relative;
+
+width:540px;
+
+max-width:92vw;
+
+}
+
+.frame-image{
+
+width:100%;
+
+display:block;
+
+}
+
+.lightbox-photo{
+
+position:absolute;
+
+top:48px;
+
+left:50px;
+
+width:440px;
+
+height:435px;
+
+object-fit:cover;
+object-position;center 65%
+
+border-radius:4px
+
+}
+
+#lightboxCaption{
+
+margin-top:18px;
+
+font-family:"Caveat",cursive;
+
+font-size:2rem;
+
+text-align:center;
+
+color:#b76d91;
+
+}
+
+#closeLightbox{
+
+position:absolute;
+
+top:-15px;
+
+right:-15px;
+
+width:45px;
+
+height:45px;
+
+border:none;
+
+border-radius:50%;
+
+background:white;
+
+font-size:20px;
+
+cursor:pointer;
+
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+
+}
+/* ==========================================================
+   FOR BACCHAA — SCRAPBOOK V3
+   style.css — PART 4
+   Music • Floating Effects • Loading • Animations
+========================================================== */
+
+/* ==========================
+   MUSIC PLAYER
+========================== */
+
+.music-player{
+
+position:fixed;
+
+right:25px;
+
+bottom:25px;
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+padding:14px 18px;
+
+background:rgba(255,255,255,.92);
+
+backdrop-filter:blur(14px);
+
+border-radius:22px;
+
+box-shadow:
+
+0 15px 35px rgba(0,0,0,.12);
+
+z-index:9999;
+
+border:2px solid rgba(255,180,210,.35);
+
+}
+
+#musicBtn{
+
+width:52px;
+
+height:52px;
+
+border:none;
+
+border-radius:50%;
+
+background:linear-gradient(
+135deg,
+#ff9ec4,
+#ff79b0
+);
+
+color:white;
+
+font-size:20px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+#musicBtn:hover{
+
+transform:scale(1.08);
+
+}
+
+.music-info h4{
+
+font-family:"Caveat",cursive;
+
+font-size:1.8rem;
+
+color:#ff6ca9;
+
+}
+
+.music-info p{
+
+font-size:.85rem;
+
+color:#8c7682;
+
+}
+
+
+
+/* ==========================
+   PAPER OVERLAY
+========================== */
+
+.paper-overlay{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+background-image:
+
+radial-gradient(
+rgba(255,255,255,.35) 1px,
+transparent 1px
+);
+
+background-size:14px 14px;
+
+opacity:.18;
+
+z-index:2;
+
+}
+
+
+/* ==========================
+   VIGNETTE
+========================== */
+
+.vignette{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+box-shadow:
+
+inset 0 0 180px rgba(0,0,0,.08);
+
+z-index:3;
+
+}
+
+
+/* ==========================
+   HEARTS
+========================== */
+
+.floating-heart{
+
+position:absolute;
+
+bottom:-40px;
+
+color:#ff8ab7;
+
+animation:heartFloat linear forwards;
+
+opacity:.8;
+
+user-select:none;
+
+}
+
+
+/* ==========================
+   SPARKLES
+========================== */
+
+.sparkle{
+
+position:absolute;
+
+width:8px;
+
+height:8px;
+
+background:white;
+
+border-radius:50%;
+
+box-shadow:
+
+0 0 12px white,
+
+0 0 22px #ffd2e6;
+
+animation:sparkle 1.6s linear forwards;
+
+}
+
+
+/* ==========================
+   PETALS
+========================== */
+
+.petal{
+
+position:absolute;
+
+top:-40px;
+
+width:18px;
+
+height:12px;
+
+background:#ffc4dc;
+
+border-radius:50% 50% 50% 0;
+
+transform:rotate(45deg);
+
+animation:petalFall linear forwards;
+
+}
+
+
+/* ==========================
+   ANIMATIONS
+========================== */
+
+@keyframes fadePage{
+
+from{
+
+opacity:0;
+
+transform:translateY(25px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+@keyframes bookFloat{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+}
+
+@keyframes floatCard{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-8px);
+
+}
+
+}
+
+@keyframes butterflyFloat{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+}
+
+@keyframes heartbeat{
+
+0%,100%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.12);
+
+}
+
+}
+
+@keyframes popupIn{
+
+from{
+
+opacity:0;
+
+transform:scale(.8);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+}
+
+@keyframes heartFloat{
+
+0%{
+
+transform:translateY(0);
+
+opacity:0;
+
+}
+
+15%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-120vh);
+
+opacity:0;
+
+}
+
+}
+
+@keyframes sparkle{
+
+0%{
+
+opacity:0;
+
+transform:scale(.2);
+
+}
+
+50%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:0;
+
+transform:scale(2);
+
+}
+
+}
+
+@keyframes petalFall{
+
+0%{
+
+transform:
+translateY(0)
+rotate(0deg);
+
+}
+
+100%{
+
+transform:
+translateY(120vh)
+translateX(80px)
+rotate(360deg);
+
+}
+
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:900px){
+
+.book{
+
+width:96vw;
+
+height:92vh;
+
+}
+
+.page-inner{
+
+padding:30px;
+
+}
+
+.polaroid-gallery{
+
+gap:20px;
+
+}
+
+.polaroid{
+
+width:200px;
+
+}
+
+.letter-paper{
+
+padding:35px;
+
+min-height:auto;
+
+}
+
+.music-player{
+
+right:10px;
+
+bottom:10px;
+
+transform:scale(.9);
+
+}
+
+.heart-grid{
+
+grid-template-columns:repeat(2,90px);
+
+}
+
+.frame-container{
+
+width:90vw;
+
+}
+
+.lightbox-photo{
+
+position:absolute;
+
+top:8.5%;
+
+left:9%;
+
+width:82%;
+
+height:58%;
+
+object-fit:cover;
+
+object-position:center;
+
+border-radius:6px;
+
+}
+
+}
+.page-buttons{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+width:100%;
+
+margin-top:35px;
+
+z-index:100;
+
+position:relative;
+
+}
+
+.page-buttons button{
+
+padding:14px 28px;
+
+border:none;
+
+border-radius:40px;
+
+background:linear-gradient(135deg,#ff9fc4,#ff75ad);
+
+color:white;
+
+font-size:1rem;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:0 10px 20px rgba(255,120,170,.25);
+
+}
+
+.page-buttons button:hover{
+
+transform:translateY(-3px);
+
+}
+/* ==========================
+   CONFETTI
+========================== */
+
+#confetti-container{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+overflow:hidden;
+
+z-index:9999;
+
+}
+
+.confetti{
+
+position:absolute;
+
+top:-20px;
+
+width:10px;
+
+height:18px;
+
+border-radius:3px;
+
+animation:confettiFall linear forwards;
+
+}
+
+@keyframes confettiFall{
+
+0%{
+
+transform:translateY(-20px) rotate(0deg);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(110vh) rotate(720deg);
+
+opacity:0;
+
+}
+
+}
+.click-heart{
+
+position:fixed;
+
+font-size:24px;
+
+color:#ff7eb3;
+
+pointer-events:none;
+
+animation:heartBurst 1.8s ease-out forwards;
+
+z-index:99999;
+
+}
+
+@keyframes heartBurst{
+
+0%{
+
+opacity:1;
+
+transform:translate(0,0) scale(.6);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:
+
+translate(var(--x),var(--y))
+
+scale(1.5)
+
+rotate(35deg);
+
+}
+
+}
+#cameraFlash{
+
+position:fixed;
+
+inset:0;
+
+background:white;
+
+opacity:0;
+
+pointer-events:none;
+
+z-index:999999;
+
+}
+
+#cameraFlash.flash{
+
+animation:cameraFlash .35s ease;
+
+}
+
+@keyframes cameraFlash{
+
+0%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:0;
+
+}
+
+}
